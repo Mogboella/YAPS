@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/MRTabletopAssets/Games/Chess/Scenes/SlicesChess.unity
     guid: 7b10018d527adf74a93f47002beec580
+  - enabled: 1
+    path: Assets/Scenes/YAPS_Main.unity
+    guid: 094242f6ad7794f25a3b78e9972ae457
   m_configObjects:
     com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: bf7e823c1be0db345b05de1c9c9beb5e,
       type: 2}
