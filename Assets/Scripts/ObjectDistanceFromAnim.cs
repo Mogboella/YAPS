@@ -5,6 +5,7 @@ public class ObjectDistanceFromAnim : MonoBehaviour
     [Header("References")]
     public Transform head;        // XR/Main Camera
     public Animator animator;     // Inky Animator
+    public InkySpeechBubble speechBubble;
 
     [Header("Left Shift Per Mood")]
     public float calmLeftShift = 0f;
@@ -47,10 +48,10 @@ public class ObjectDistanceFromAnim : MonoBehaviour
         }
 
         // Keyboard testing
-        if (Input.GetKeyDown(KeyCode.Alpha0)) SetMood(0); // Calm
-        if (Input.GetKeyDown(KeyCode.Alpha1)) SetMood(1); // Restless
-        if (Input.GetKeyDown(KeyCode.Alpha2)) SetMood(2); // Urgent
-        if (Input.GetKeyDown(KeyCode.Alpha3)) SetMood(3); // Distressed
+        //if (Input.GetKeyDown(KeyCode.Alpha0)) SetMood(0); // Calm
+        //if (Input.GetKeyDown(KeyCode.Alpha1)) SetMood(1); // Restless
+        //if (Input.GetKeyDown(KeyCode.Alpha2)) SetMood(2); // Urgent
+        //if (Input.GetKeyDown(KeyCode.Alpha3)) SetMood(3); // Distressed
     }
 
     void LateUpdate()
@@ -103,6 +104,10 @@ public class ObjectDistanceFromAnim : MonoBehaviour
     public void SetMood(int mood)
     {
         if (animator == null) return;
+
         animator.SetInteger(MoodHash, mood);
+
+        if (speechBubble != null)
+            speechBubble.UpdateBubbleText();
     }
 }
