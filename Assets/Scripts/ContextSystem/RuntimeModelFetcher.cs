@@ -212,7 +212,7 @@ namespace YAPS.ContextSystem
             float maxExtent = bounds.size.magnitude;
             if (maxExtent > 0)
             {
-                float targetSize = 1.5f; // Tripled the target scale to make it bigger (~30% of Inky)
+                float targetSize = 0.5f; // Keep the target scale aligned with procedural props
                 float scaleFactor = targetSize / maxExtent;
                 // Apply a uniform scale
                 container.localScale = Vector3.one * scaleFactor;
