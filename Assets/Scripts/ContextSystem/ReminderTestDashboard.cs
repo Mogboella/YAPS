@@ -15,7 +15,10 @@ namespace YAPS.ContextSystem
         [Header("UI Settings")]
         public bool showDebugUI = true;
         
-        private Rect windowRect = new Rect(20, 20, 300, 200);
+        // Smaller, less intrusive window
+        private Rect windowRect = new Rect(20, 20, 220, 180);
+        private GUIStyle textAreaStyle;
+        private GUIStyle labelStyle;
 
         void Start()
         {
@@ -42,23 +45,38 @@ namespace YAPS.ContextSystem
         {
             if (!showDebugUI) return;
 
+            if (textAreaStyle == null)
+            {
+                textAreaStyle = new GUIStyle(GUI.skin.textArea) { wordWrap = true, fontSize = 12 };
+                labelStyle = new GUIStyle(GUI.skin.label) { fontSize = 12, fontStyle = FontStyle.Bold };
+            }
+
             windowRect = GUILayout.Window(0, windowRect, DrawWindow, "Inky Context Tester");
         }
 
         private void DrawWindow(int windowID)
         {
-            GUILayout.Label("Reminder Text:");
-            testReminderText = GUILayout.TextField(testReminderText);
+            GUILayout.Space(5);
+            
+            GUILayout.Label("Reminder Text:", labelStyle);
+            // Smaller text area box
+            testReminderText = GUILayout.TextArea(testReminderText, textAreaStyle, GUILayout.Height(35));
 
-            GUILayout.Label("Time Remaining (mins): " + testTimeRemainingMins.ToString("F1"));
+            GUILayout.Space(10);
+
+            GUILayout.Label("Time Remaining (mins): " + testTimeRemainingMins.ToString("F1"), labelStyle);
             testTimeRemainingMins = GUILayout.HorizontalSlider(testTimeRemainingMins, 0f, 60f);
 
-            if (GUILayout.Button("Send Reminder"))
+            GUILayout.Space(15);
+
+            if (GUILayout.Button("Send Reminder", GUILayout.Height(25)))
             {
                 SendTestReminder();
             }
 
-            if (GUILayout.Button("Update Time Linearly"))
+            GUILayout.Space(5);
+
+            if (GUILayout.Button("Update Time Linearly", GUILayout.Height(25)))
             {
                 if (contextController != null)
                 {
