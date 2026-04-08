@@ -124,5 +124,13 @@ namespace YAPS
                 _ => 0f
             };
         }
+
+        /// <summary>Animation event from inky_urgent / inky_distressed clips (same name as in the .anim events).</summary>
+        public void TriggerStressBurst()
+        {
+            if (stressVFX == null) return;
+            int n = Mathf.Clamp(Mathf.RoundToInt(16f + 32f * Mathf.Max(urgencyScore, 0.35f)), 8, 64);
+            stressVFX.Emit(n);
+        }
     }
 }

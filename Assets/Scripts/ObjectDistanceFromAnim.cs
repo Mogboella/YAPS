@@ -66,6 +66,14 @@ public class ObjectDistanceFromAnim : MonoBehaviour
     private bool warnedMissingHead;
     private Coroutine setupRoutine;
 
+    /// <summary>Forwarded to parent <see cref="CompanionVisualController"/> — animation events only fire on this object (Animator root), not on parents.</summary>
+    public void TriggerStressBurst()
+    {
+        var visual = GetComponentInParent<CompanionVisualController>();
+        if (visual != null)
+            visual.TriggerStressBurst();
+    }
+
     [ContextMenu("Capture offset from head")]
     void CaptureOffsetFromHead()
     {
