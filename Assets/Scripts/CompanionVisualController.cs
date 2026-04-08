@@ -111,5 +111,18 @@ namespace YAPS
         }
 
         void OnValidate() { ApplyAllVisuals(); }
+
+        /// <summary>Maps Inky animator Mood (0–3) to urgency-driven color, scale, VFX, and AnxietyLevel.</summary>
+        public void SetUrgencyFromMood(int mood)
+        {
+            urgencyScore = mood switch
+            {
+                0 => 0f,
+                1 => 0.4f,
+                2 => 1f,
+                3 => 0.75f,
+                _ => 0f
+            };
+        }
     }
 }

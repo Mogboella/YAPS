@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using Unity.XR.CoreUtils;
+using YAPS;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -300,5 +301,9 @@ public class ObjectDistanceFromAnim : MonoBehaviour
 
         if (speechBubble != null)
             speechBubble.UpdateBubbleText();
+
+        var visuals = GetComponentInParent<CompanionVisualController>();
+        if (visuals != null)
+            visuals.SetUrgencyFromMood(mood);
     }
 }
