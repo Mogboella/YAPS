@@ -111,5 +111,26 @@ namespace YAPS
         }
 
         void OnValidate() { ApplyAllVisuals(); }
+
+        /// <summary>Maps Inky animator Mood (0–3) to urgency-driven color, scale, VFX, and AnxietyLevel.</summary>
+        public void SetUrgencyFromMood(int mood)
+        {
+            urgencyScore = mood switch
+            {
+                0 => 0f,
+                1 => 0.4f,
+                2 => 1f,
+                3 => 0.75f,
+                _ => 0f
+            };
+        }
+
+        /// <summary>Animation event from inky_urgent / inky_distressed clips (same name as in the .anim events).</summary>
+        public void TriggerStressBurst()
+        {
+            if (stressVFX == null) return;
+            int n = Mathf.Clamp(Mathf.RoundToInt(16f + 32f * Mathf.Max(urgencyScore, 0.35f)), 8, 64);
+            stressVFX.Emit(n);
+        }
     }
 }
