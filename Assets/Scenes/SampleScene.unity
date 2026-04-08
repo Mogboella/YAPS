@@ -5985,7 +5985,7 @@ PrefabInstance:
         type: 3}
       propertyPath: head
       value: 
-      objectReference: {fileID: 856023297}
+      objectReference: {fileID: 539578309}
     - target: {fileID: 3787250110165254446, guid: dcf98a350bc32d54c94ebac709b60ae2,
         type: 3}
       propertyPath: animator
